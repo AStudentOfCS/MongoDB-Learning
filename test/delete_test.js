@@ -2,17 +2,17 @@ const assert = require('assert');
 const User = require('../src/user');
 
 describe('Deleting a user', () => {
-  let jan;
+  let joe;
 
   beforeEach((done) => {
-    jan = new User({ name: 'Jan' });
-    jan.save()
+    joe = new User({ name: 'Joe' });
+    joe.save()
       .then(() => done());
   });
 
   it('model instance remove', (done) => {
-    jan.remove()
-      .then(() => User.findOne({ name: 'Jan' }))
+    joe.remove()
+      .then(() => User.findOne({ name: 'Joe' }))
       .then((user) => {
         assert(user === null);
         done();
@@ -21,8 +21,8 @@ describe('Deleting a user', () => {
 
   it('class method remove', (done) => {
     // Remove a bunch of records with some given criteria
-    User.remove({ name: 'Jan' })
-      .then(() => User.findOne({ name: 'Jan'}))
+    User.remove({ name: 'Joe' })
+      .then(() => User.findOne({ name: 'Joe'}))
       .then((user) => {
         assert(user === null);
         done();
@@ -30,8 +30,8 @@ describe('Deleting a user', () => {
   });
 
   it('class method findOneAndRemove', (done) => {
-    User.findOneAndRemove({ name: 'Jan' })
-      .then(() => User.findOne({ name: 'Jan' }))
+    User.findOneAndRemove({ name: 'Joe' })
+      .then(() => User.findOne({ name: 'Joe' }))
       .then((user) => {
         assert(user === null);
         done();
@@ -39,8 +39,8 @@ describe('Deleting a user', () => {
   });
 
   it('class method findByIdAndRemove', (done) => {
-    User.findByIdAndRemove(jan._id)
-      .then(() => User.findOne({ name: 'Jan' }))
+    User.findByIdAndRemove(joe._id)
+      .then(() => User.findOne({ name: 'Joe' }))
       .then((user) => {
         assert(user === null);
         done();
